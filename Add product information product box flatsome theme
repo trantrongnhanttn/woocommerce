@@ -1,0 +1,14 @@
+function add_product_information_product_box( ) {
+    global $product;
+    $output = '';
+    $output .= '<div class="showinfo">';
+    if($product->get_attribute('pa_made-in')):
+    	$output .= 'Made in '.$product->get_attribute('pa_made-in').'<br>';
+    endif;
+    if($product->get_attribute('pa_size')):
+    	$output .= 'Size: '.$product->get_attribute('pa_size');
+    endif;
+    $output .= '</div>';
+    echo $output;
+}
+add_action( 'flatsome_product_box_after', 'add_product_information_product_box');
