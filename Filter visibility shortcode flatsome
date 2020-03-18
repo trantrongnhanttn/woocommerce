@@ -1,0 +1,19 @@
+add_filter( 'do_shortcode_tag', 'add_filter_shortcode_ux_visibility', 10, 3 );
+function add_filter_shortcode_ux_visibility( $output, $tag, $attr ) {
+    if( !isset($attr['visibility']) )
+        return $output;
+    
+    if($attr['visibility'] == 'hidden')
+        return;
+    
+    if( ($attr['visibility'] == 'hide-for-medium') &&  wp_is_mobile() ) 
+        return;
+    elseif( ($attr['visibility'] == 'show-for-small') && !wp_is_mobile() ) 
+        return;
+    elseif( ($attr['visibility'] == 'show-for-medium') && !wp_is_mobile() )
+        return;
+    elseif( ($attr['visibility'] == 'hide-for-small') && wp_is_mobile() )
+        return;
+    
+    return $output;
+}
